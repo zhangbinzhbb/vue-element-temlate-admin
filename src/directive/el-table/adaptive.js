@@ -22,13 +22,13 @@ const doResize = (el, binding, vnode) => {
   const height = window.innerHeight - el.getBoundingClientRect().top - bottomOffset
   $table.layout.setHeight(height)
   $table.doLayout()
-}
+};
 
 export default {
   bind(el, binding, vnode) {
     el.resizeListener = () => {
       doResize(el, binding, vnode)
-    }
+    };
     // parameter 1 is must be "Element" type
     addResizeListener(window.document.body, el.resizeListener)
   },
@@ -37,5 +37,5 @@ export default {
   },
   unbind(el) {
     removeResizeListener(window.document.body, el.resizeListener)
-  }
+  },
 }

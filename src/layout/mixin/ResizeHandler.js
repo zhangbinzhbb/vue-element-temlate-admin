@@ -1,14 +1,14 @@
-import store from "@/store";
+import store from '@/store';
 
 const { body } = document;
 const WIDTH = 992; // refer to Bootstrap's responsive design
 
 export default {
   beforeMount() {
-    window.addEventListener("resize", this.$_resizeHandler);
+    window.addEventListener('resize', this.$_resizeHandler);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.$_resizeHandler);
+    window.removeEventListener('resize', this.$_resizeHandler);
   },
   methods: {
     // use $_ for mixins properties
@@ -21,6 +21,6 @@ export default {
       //     store.dispatch("app/closeSideBar", { withoutAnimation: true });
       //   }
       // }
-    }
-  }
+    },
+  },
 };

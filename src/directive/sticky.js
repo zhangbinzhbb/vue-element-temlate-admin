@@ -1,6 +1,6 @@
 const vueSticky = {}
 let listenAction
-vueSticky.install = Vue => {
+vueSticky.install = (Vue) => {
   Vue.directive('sticky', {
     inserted(el, binding) {
       const params = binding.value || {}
@@ -37,7 +37,7 @@ vueSticky.install = Vue => {
           ret = window.document.documentElement[method]
         }
         return ret
-      }
+      };
 
       const sticky = () => {
         if (active) {
@@ -51,7 +51,7 @@ vueSticky.install = Vue => {
         elStyle.width = `${elWidth}px`
         placeholder.style.display = 'inline-block'
         active = true
-      }
+      };
 
       const reset = () => {
         if (!active) {
@@ -61,7 +61,7 @@ vueSticky.install = Vue => {
         elStyle.position = ''
         placeholder.style.display = 'none'
         active = false
-      }
+      };
 
       const check = () => {
         const scrollTop = getScroll(window, true)
@@ -76,16 +76,15 @@ vueSticky.install = Vue => {
       }
       listenAction = () => {
         check()
-      }
+      };
 
       window.addEventListener('scroll', listenAction)
     },
 
     unbind() {
       window.removeEventListener('scroll', listenAction)
-    }
+    },
   })
-}
+};
 
 export default vueSticky
-

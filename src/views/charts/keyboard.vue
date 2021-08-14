@@ -7,17 +7,16 @@
 <script>
 import Chart from '@/components/Charts/Keyboard'
 
-export default {
+  export default {
   name: 'KeyboardChart',
   components: { Chart }
-}
+};
 </script>
 
 <style scoped>
-.chart-container{
-  position: relative;
-  width: 100%;
-  height: calc(100vh - 84px);
-}
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 84px);
+  }
 </style>
-

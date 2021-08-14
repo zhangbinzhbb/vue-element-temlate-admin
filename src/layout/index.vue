@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import { AppMain, Navbar, Sidebar, TagsView } from "./components";
-import ResizeMixin from "./mixin/ResizeHandler";
-import { mapState } from "vuex";
+import { AppMain, Navbar, Sidebar, TagsView } from './components';
+import ResizeMixin from './mixin/ResizeHandler';
+import { mapState } from 'vuex';
 
 export default {
-  name: "Layout",
+  name: 'Layout',
   components: {
     AppMain,
     Navbar,
@@ -42,15 +42,15 @@ export default {
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch("app/closeSideBar", { withoutAnimation: false });
+      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
-@import "~@/styles/variables.scss";
+@import '~@/styles/mixin.scss';
+@import '~@/styles/variables.scss';
 
 .app-wrapper {
   @include clearfix;
@@ -59,15 +59,15 @@ export default {
   width: 100%;
 }
 
-.drawer-bg {
-  background: #000;
-  opacity: 0.3;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
-}
+// .drawer-bg {
+//   background: #000;
+//   opacity: 0.3;
+//   width: 100%;
+//   top: 0;
+//   height: 100%;
+//   position: absolute;
+//   z-index: 999;
+// }
 
 .fixed-header {
   position: fixed;

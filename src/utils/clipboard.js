@@ -23,10 +23,10 @@ export default function handleClipboard(text, event) {
   clipboard.on('success', () => {
     clipboardSuccess()
     clipboard.destroy()
-  })
+  });
   clipboard.on('error', () => {
     clipboardError()
     clipboard.destroy()
-  })
+  });
   clipboard.onClick(event)
 }

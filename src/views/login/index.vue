@@ -2,10 +2,7 @@
   <div class="login-container">
     <div class="login-layout">
       <div class="login-head">
-        <img
-          class="logo"
-          src="https://s.weituibao.com/1582958061265/mlogo.png"
-        />
+        <img class="logo" src="https://s.weituibao.com/1582958061265/mlogo.png" />
         <div class="name">
           <div class="title">乐摇摇</div>
           <div class="tips">后台管理系统</div>
@@ -34,12 +31,7 @@
           />
         </el-form-item>
 
-        <el-tooltip
-          v-model="capsTooltip"
-          content="Caps lock is On"
-          placement="right"
-          manual
-        >
+        <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
           <el-form-item prop="password">
             <span class="svg-container">
               <svg-icon icon-class="password" />
@@ -58,9 +50,7 @@
               @keyup.enter.native="handleLogin"
             />
             <span class="show-pwd" @click="showPwd">
-              <svg-icon
-                :icon-class="passwordType === 'password' ? 'eye-off' : 'eye-on'"
-              />
+              <svg-icon :icon-class="passwordType === 'password' ? 'eye-off' : 'eye-on'" />
             </span>
           </el-form-item>
         </el-tooltip>
@@ -71,19 +61,17 @@
           style="width: 100%; margin-bottom: 30px"
           @click.native.prevent="handleLogin"
         >
-          {{ $t("login.logIn") }}
+          {{ $t('login.logIn') }}
         </el-button>
 
         <div style="position: relative">
           <div class="tips">
-            <span>{{ $t("login.username") }} : admin</span>
-            <span>{{ $t("login.password") }} : {{ $t("login.any") }}</span>
+            <span>{{ $t('login.username') }} : admin</span>
+            <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
           </div>
           <div class="tips">
-            <span style="margin-right: 18px">
-              {{ $t("login.username") }} : editor
-            </span>
-            <span>{{ $t("login.password") }} : {{ $t("login.any") }}</span>
+            <span style="margin-right: 18px"> {{ $t('login.username') }} : editor </span>
+            <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
           </div>
         </div>
       </el-form>
@@ -91,41 +79,37 @@
   </div>
 </template>
 <script>
-import { validUsername } from "@/utils/validate";
-import SocialSign from "./components/SocialSignin";
+import { validUsername } from '@/utils/validate';
+import SocialSign from './components/SocialSignin';
 
 export default {
-  name: "Login",
+  name: 'Login',
   components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error("Please enter the correct user name"));
+        callback(new Error('Please enter the correct user name'));
       } else {
         callback();
       }
     };
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error("The password can not be less than 6 digits"));
+        callback(new Error('The password can not be less than 6 digits'));
       } else {
         callback();
       }
     };
     return {
       loginForm: {
-        username: "admin",
-        password: "111111",
+        username: 'admin',
+        password: '111111',
       },
       loginRules: {
-        username: [
-          { required: true, trigger: "blur", validator: validateUsername },
-        ],
-        password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
+        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
       },
-      passwordType: "password",
+      passwordType: 'password',
       capsTooltip: false,
       loading: false,
       showDialog: false,
@@ -146,22 +130,22 @@ export default {
     },
   },
   mounted() {
-    if (this.loginForm.username === "") {
+    if (this.loginForm.username === '') {
       this.$refs.username.focus();
-    } else if (this.loginForm.password === "") {
+    } else if (this.loginForm.password === '') {
       this.$refs.password.focus();
     }
   },
   methods: {
     checkCapslock(e) {
       const { key } = e;
-      this.capsTooltip = key && key.length === 1 && key >= "A" && key <= "Z";
+      this.capsTooltip = key && key.length === 1 && key >= 'A' && key <= 'Z';
     },
     showPwd() {
-      if (this.passwordType === "password") {
-        this.passwordType = "";
+      if (this.passwordType === 'password') {
+        this.passwordType = '';
       } else {
-        this.passwordType = "password";
+        this.passwordType = 'password';
       }
       this.$nextTick(() => {
         this.$refs.password.focus();
@@ -172,10 +156,10 @@ export default {
         if (valid) {
           this.loading = true;
           this.$store
-            .dispatch("user/login", this.loginForm)
+            .dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({
-                path: this.redirect || "/",
+                path: this.redirect || '/',
                 query: this.otherQuery,
               });
               this.loading = false;
@@ -184,14 +168,14 @@ export default {
               this.loading = false;
             });
         } else {
-          console.log("error submit!!");
+          console.log('error submit!!');
           return false;
         }
       });
     },
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== "redirect") {
+        if (cur !== 'redirect') {
           acc[cur] = query[cur];
         }
         return acc;
